@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package protocol;
+
+message Task {
+    string id = 1;
+    string name = 2;
+}
+
+message Tasks {
+    repeated Task task = 1;
+}
+
+message Void {
+}
+
+message ID {
+    string id = 1;
+}
+
+service Report {
+    rpc Create (Task) returns (ID) {}
+    rpc FindOne (ID) returns (Task) {}
+    rpc FindAll (Void) returns (Tasks) {}
+    rpc Update (Task) returns (ID) {}
+    rpc Delete (ID) returns (ID) {}
+}
